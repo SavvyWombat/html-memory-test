@@ -20,6 +20,16 @@
     <ul>
         <li v-for="(answer, index) in correct" :key="index">{{ answer }}</li>
     </ul>
+
+    <dl v-if="lastAnswer">
+        <dt>
+            {{ lastAnswer.name }} <span v-if="lastAnswer.status === 'deprecated'">(deprecated/obsolete)</span>
+        </dt>
+
+        <dd>
+            {{ lastAnswer.description }}
+        </dd>
+    </dl>
 </template>
 
 <script>
@@ -32,6 +42,7 @@ export default {
     return {
       tag: '',
       correct: [],
+      lastAnswer: null
     }
   },
 
@@ -41,6 +52,18 @@ export default {
         if (!section.title.includes('deprecated')) {
           return section.elements;
         }
+      }).filter((element) => {
+        return element !== undefined;
+      })
+    },
+
+    deprecatedElements() {
+      return reference.flatMap((section) => {
+        if (section.title.includes('deprecated')) {
+          return section.elements;
+        }
+      }).filter((element) => {
+        return element !== undefined;
       })
     }
   },
@@ -53,8 +76,29 @@ export default {
           if (!this.correct.includes(this.tag)) {
             this.correct.push(this.tag);
           }
+
+          this.lastAnswer = {
+            'status': 'valid',
+            ...this.validElements.find((element) => {
+              return element?.name === '<' + this.tag + '>';
+            })
+          }
+
           this.tag = '';
         }
+
+      if (this.deprecatedElements.find((element) => {
+        return element?.name === '<' + this.tag + '>';
+      })) {
+        this.lastAnswer = {
+          'status': 'deprecated',
+          ...this.deprecatedElements.find((element) => {
+            return element?.name === '<' + this.tag + '>';
+          })
+        }
+
+        this.tag = '';
+      }
     }
   }
 }
