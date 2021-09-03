@@ -10,15 +10,17 @@
             <input type="text" v-model="tag" @keyup.enter="guess" autofocus>
         </label>
 
-        <button @onclick="guess">Guess</button>
+        <button @click="guess">Guess</button>
     </form>
 
     <p>
         You've remembered {{ correct.length }} / {{ validElements.length }} elements
     </p>
 
+    <button @click="showMissing">Show me what I'm missing</button>
+
     <ul>
-        <li v-for="(answer, index) in correct" :key="index">{{ answer }}</li>
+        <li v-for="(answer, index) in correct" :key="index">&lt;{{ answer }}&gt;</li>
     </ul>
 
     <dl v-if="lastAnswer">
@@ -29,6 +31,18 @@
         <dd>
             {{ lastAnswer.description }}
         </dd>
+    </dl>
+
+    <dl v-if="missing">
+        <template v-for="(element, index) in missing" :key="index">
+            <dt>
+                {{ element.name }}
+            </dt>
+
+            <dd>
+                {{ element.description }}
+            </dd>
+        </template>
     </dl>
 </template>
 
@@ -42,7 +56,8 @@ export default {
     return {
       tag: '',
       correct: [],
-      lastAnswer: null
+      lastAnswer: null,
+      missing: null,
     }
   },
 
@@ -70,6 +85,10 @@ export default {
 
   methods: {
     guess() {
+        if (['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].includes(this.tag)) {
+          this.tag = 'h1>, <h2>, <h3>, <h4>, <h5>, <h6'
+        }
+
         if (this.validElements.find((element) => {
             return element?.name === '<' + this.tag + '>';
         })) {
@@ -99,6 +118,12 @@ export default {
 
         this.tag = '';
       }
+    },
+
+    showMissing() {
+        this.missing = this.validElements.filter((element) => {
+          return ! this.correct.includes(element.name.substring(1, element.name.length - 1))
+        })
     }
   }
 }
