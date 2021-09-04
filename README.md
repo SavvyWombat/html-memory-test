@@ -1,5 +1,7 @@
 # html-memory
 
+A simple memory test and learning tool for HTML Elements.
+
 ## Project setup
 ```
 yarn install
