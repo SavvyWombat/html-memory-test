@@ -33,6 +33,11 @@
         <p class="p-2 mb-8 text-center text-md md:text-xl">
             You've remembered {{ correct.length }} / {{ validElements.length }} elements
 
+            <button class="bg-savvy-blue-900 border-2 border-savvy-blue-900 p-2 m-2 text-white hover:bg-savvy-blue-500 hover:text-gray-900"
+                    @click="showClue"
+            >Gimme a clue, please
+            </button>
+
             <button v-if="correct.length < validElements.length"
                     class="bg-savvy-blue-900 border-2 border-savvy-blue-900 p-2 m-2 text-white hover:bg-savvy-blue-500 hover:text-gray-900"
                     @click="showMissing"
@@ -45,7 +50,7 @@
         </p>
 
         <div class="grid grid-cols-1/3 gap-4">
-            <ul v-if="correct.length">
+            <ul>
                 <li v-for="(answer, index) in correct"
                     :key="index"
                     class="px-2 bg-savvy-blue-400 odd:bg-savvy-blue-300"
@@ -165,6 +170,20 @@ export default {
         }
 
         this.tag = '';
+      }
+    },
+
+    showClue() {
+      const missing = this.validElements.filter((element) => {
+        return !this.correct.includes(element.name.substring(1, element.name.length - 1))
+      })
+
+      const clue = missing[Math.floor(Math.random() * (missing.length))];
+
+      this.lastAnswer = {
+        'status': 'valid',
+        name: clue.name.replace(/<[a-z0-9]+>/, '<????>'),
+        description: clue.description.replaceAll(/<[a-z0-9]+>/g, '<????>')
       }
     },
 
