@@ -174,6 +174,8 @@ export default {
     },
 
     showClue() {
+      this.missing = null;
+
       const missing = this.validElements.filter((element) => {
         return !this.correct.includes(element.name.substring(1, element.name.length - 1))
       })
