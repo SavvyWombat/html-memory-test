@@ -87,16 +87,17 @@
 
     <footer class="p-2 md:text-right text-sm">
         <p id="source">
-            List of tags and descriptions from: <cite class="whitespace-nowrap"><a
-                class="text-purple-700 underline hover:text-blue-700"
+            List of tags and descriptions: <cite class="whitespace-nowrap not-italic"><a
+                class="text-blue-700 underline hover:text-purple-700"
                 href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element">MDN Web Docs - HTML
             elements reference</a></cite>
         </p>
 
         <p class="mt-2">
-            <span class="whitespace-nowrap">&copy;
-            <a href="https://savvywombat.com.au" class="hover:underline"><span class="font-bold text-savvy-gray-500">Savvy </span>
-                <span class="font-bold text-savvy-brown-500">Wombat</span></a></span>
+            <a href="https://github.com/SavvyWombat/html-memory-test" class="text-blue-700 underline hover:text-purple-700">Source code</a> <span class="whitespace-nowrap">&copy;
+                <a href="https://savvywombat.com.au" class="hover:underline">
+                    <span class="font-bold text-savvy-gray-500">Savvy</span> <span class="font-bold text-savvy-brown-500">Wombat</span></a>
+            </span>
         </p>
     </footer>
 </template>
@@ -216,5 +217,3 @@ export default {
   }
 }
 </script>
-
-
