@@ -49,7 +49,7 @@
                 <li v-for="(answer, index) in correct"
                     :key="index"
                     class="px-2 bg-savvy-blue-400 odd:bg-savvy-blue-300"
-                >&lt;{{ answer }}&gt;
+                ><a class="cursor-pointer hover:underline" @click.prevent="showDetails(answer)">&lt;{{ answer }}&gt;</a>
                 </li>
             </ul>
 
@@ -165,6 +165,19 @@ export default {
         }
 
         this.tag = '';
+      }
+    },
+
+    showDetails(answer) {
+      if (this.validElements.find((element) => {
+        return element?.name === '<' + answer + '>';
+      })) {
+        this.lastAnswer = {
+          'status': 'valid',
+          ...this.validElements.find((element) => {
+            return element?.name === '<' + answer + '>';
+          })
+        }
       }
     },
 
