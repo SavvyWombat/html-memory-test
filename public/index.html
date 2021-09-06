@@ -1,17 +1,32 @@
 <!DOCTYPE html>
 <html lang="en-AU" class="h-full">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
     <title>HTML Tags Memory Test</title>
-  </head>
-  <body class="bg-savvy-blue-500 text-gray-900 text-lg md:text-xl h-full">
-    <noscript>
-      <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
-    </noscript>
-    <div id="app" class="grid grid-rows-layout min-h-full"></div>
-    <!-- built files will be auto injected -->
-  </body>
+
+
+    <meta property="og:type" content="article"/>
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:site" content="https://savvywombat.com.au"/>
+    <meta name="twitter:site:id" content="@SavvyWombat"/>
+
+    <meta name="og:url" content="https://savvywombat.com.au<%= BASE_URL %>"/>
+    <meta name="og:locale" content="en_AU"/>
+
+    <meta property="og:title" content="HTML Tags Memory Test"/>
+    <meta property="og:description" content="How many HTML tags can you remember from the current valid set?"/>
+
+    <meta property="og:image" content="https://savvywombat.com.au<%= BASE_URL %>social-card.png"/>
+</head>
+<body class="bg-savvy-blue-500 text-gray-900 text-lg md:text-xl h-full">
+<noscript>
+    <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled.
+        Please enable it to continue.</strong>
+</noscript>
+<div id="app" class="grid grid-rows-layout min-h-full"></div>
+<!-- built files will be auto injected -->
+</body>
 </html>
