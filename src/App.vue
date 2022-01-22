@@ -94,7 +94,7 @@
         </p>
 
         <p class="mt-2">
-            <a href="https://savvywombat.com.au/privacy">Privacy</a> |
+            <a href="https://savvywombat.com.au/privacy" class="text-blue-700 underline hover:text-purple-700">Privacy</a> |
             <a href="https://github.com/SavvyWombat/html-memory-test" class="text-blue-700 underline hover:text-purple-700">Source code</a>
             <span class="whitespace-nowrap">&copy;
                 <a href="https://savvywombat.com.au" class="hover:underline">
